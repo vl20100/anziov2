@@ -16,15 +16,6 @@ class AdminController extends AbstractController
     #[Route("/")]
     public function home(Request $request, ManagerRegistry $doctrine): Response
     {
-        $u = (new User())
-            ->setUsername('vincent')
-            ->setRoles(['ROLE_SUPER_ADMIN'])
-            ->setPassword(StringHelper::getInstance()->encrypt('vAnzi2608?'));
-
-        $em = $doctrine->getManager();
-        $em->persist($u);
-        $em->flush();
-
         return $this->render('back/home.html.twig');
     }
 }
