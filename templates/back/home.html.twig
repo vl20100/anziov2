@@ -1,7 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/base_admin.html.twig' %}
 
-{% block body %}
-    <ul>
-        <li><a href="{{ path('app_ingredient_index') }}">Gestion des ingrédients</a></li>
-    </ul>
+{% block title %}Administranzio - Accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block container %}
 {% endblock %}

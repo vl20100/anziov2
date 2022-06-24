@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administranzio{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('common_topbar') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('common_topbar') }}
+{% endblock %}
+
+{% block body %}
+    {% set topbar_links = {
+        'Ingrédients': path('app_back_ingredient_index')
+        } %}
+    {% include 'common/topbar.html.twig' with {'topbar_links': topbar_links} %}
+    <div class="container">
+        {% block container %}{% endblock %}
+    </div>
+{% endblock %}

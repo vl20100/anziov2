@@ -1,0 +1,9 @@
+{% if topbar_links is defined %}
+    <div class="topbar">
+        <ul>
+            {% for label, link in topbar_links %}
+                <li><a href="{{ link }}">{{ label }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
