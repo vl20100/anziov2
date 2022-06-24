@@ -1,3 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}Coucou{% endblock %}
+{% block body %}
+    <ul>
+        <li><a href="{{ path('app_ingredient_index') }}">Gestion des ingrédients</a></li>
+    </ul>
+{% endblock %}
