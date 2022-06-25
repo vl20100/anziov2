@@ -13,11 +13,11 @@
 {% endblock %}
 
 {% block body %}
-    {% set topbar_links = {
-        'Accueil': '#',
-        'Carte': '#',
-        'Contact': '#'
-        } %}
+    {% set topbar_links = [
+        {'label':'Accueil', 'link': '#', 'icon':'fal fa-home'},
+        {'label':'Carte', 'link': '#', 'icon':'fal fa-file-alt'},
+        {'label':'Contact', 'link': '#', 'icon':'fal fa-phone'}
+        ] %}
     {% include 'common/topbar.html.twig' with {'topbar_links': topbar_links} %}
     <div class="container">
         {% block container %}{% endblock %}

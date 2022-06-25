@@ -4,8 +4,8 @@
             <li class="topbaricon">
                 <img src="{{ asset('build/images/logo/logo.png') }}" alt="">
             </li>
-            {% for label, link in topbar_links %}
-                <li><a href="{{ link }}">{{ label }}</a></li>
+            {% for topbar_link in topbar_links %}
+                <li><a href="{{ topbar_link.link }}"><span class="{{ topbar_link.icon }}"></span>{{ topbar_link.label }}</a></li>
             {% endfor %}
         </ul>
     </div>

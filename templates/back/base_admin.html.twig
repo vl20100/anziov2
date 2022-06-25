@@ -13,11 +13,11 @@
 {% endblock %}
 
 {% block body %}
-    {% set topbar_links = {
-        'Accueil': path('app_back_admin_home'),
-        'Ingrédients': path('app_back_ingredient_index'),
-        'Déconnexion': path('app_logout')
-        } %}
+    {% set topbar_links = [
+        {'label':'Accueil', 'link': path('app_back_admin_home'), 'icon':'fal fa-home'},
+        {'label':'Ingrédients', 'link': path('app_back_ingredient_index'), 'icon':'fal fa-wheat'},
+        {'label':'Déconnexion', 'link': path('app_logout'), 'icon':'fal fa-sign-out'}
+        ] %}
     {% include 'common/topbar.html.twig' with {'topbar_links': topbar_links} %}
     <div class="container">
         {% block container %}{% endblock %}
