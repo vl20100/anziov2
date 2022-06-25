@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administranzio{% endblock %}
+{% block title %}Anzio pizza - Accueil{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -14,9 +14,9 @@
 
 {% block body %}
     {% set topbar_links = {
-        'Accueil': path('app_back_admin_home'),
-        'Ingrédients': path('app_back_ingredient_index'),
-        'Déconnexion': path('app_logout')
+        'Accueil': '#',
+        'Carte': '#',
+        'Contact': '#'
         } %}
     {% include 'common/topbar.html.twig' with {'topbar_links': topbar_links} %}
     <div class="container">

@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/base_admin.html.twig' %}
 
 {% block title %}Edit Ingredient{% endblock %}
 
-{% block body %}
+{% block container %}
     <h1>Edit Ingredient</h1>
 
     {{ include('back/ingredient/_form.html.twig', {'button_label': 'Update'}) }}

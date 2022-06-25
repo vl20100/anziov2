@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('reset', './assets/scripts/common/reset.js')
+    .addEntry('container', './assets/scripts/common/container.js')
     .addEntry('common_topbar', './assets/scripts/common/topbar.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
@@ -70,6 +71,19 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .copyFiles({
+        from: './assets/images',
+
+        // optional target path, relative to the output dir
+        //to: 'images/[path][name].[ext]',
+
+        // if versioning is enabled, add the file hash too
+        to: 'images/[path][name].[hash:8].[ext]',
+
+        // only copy files matching this pattern
+        //pattern: /\.(png|jpg|jpeg)$/
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
