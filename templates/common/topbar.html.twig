@@ -1,6 +1,9 @@
 {% if topbar_links is defined %}
     <div class="topbar">
         <ul>
+            <li class="topbaricon">
+                <img src="{{ asset('build/images/logo/logo.png') }}" alt="">
+            </li>
             {% for label, link in topbar_links %}
                 <li><a href="{{ link }}">{{ label }}</a></li>
             {% endfor %}
