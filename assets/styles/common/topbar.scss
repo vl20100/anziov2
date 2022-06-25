@@ -20,8 +20,29 @@
 
     flex: 1;
 
+    margin-block-start: .5rem;
+    margin-block-end: .5rem;
+
     li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
       list-style: none;
+      height: 100%;
+
+      &:hover {
+        background:
+                linear-gradient(
+                                to left,
+                                saddlebrown 0%,
+                                saddlebrown 100%
+                )
+                left
+                bottom
+                no-repeat;
+        background-size:100% 3px ;
+      }
 
       a {
         color: saddlebrown;
