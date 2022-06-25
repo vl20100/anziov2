@@ -1,37 +1,38 @@
 {% extends 'back/base_admin.html.twig' %}
 
-{% block title %}Ingredient index{% endblock %}
+{% block title %}Gestion des ingrédients - Administranzio{% endblock %}
 
 {% block container %}
-    <h1>Ingredient index</h1>
+    <h1>Gestion des ingrédients</h1>
+
+    <p><a href="{{ path('app_back_ingredient_new') }}" class="btn addBtn"><span class="fal fa-plus"></span> Ajouter un ingrédient</a></p>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>IsVegetarian</th>
-                <th>actions</th>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Végétarien</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for ingredient in ingredients %}
             <tr>
-                <td>{{ ingredient.id }}</td>
-                <td>{{ ingredient.name }}</td>
-                <td>{{ ingredient.isVegetarian ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_back_ingredient_show', {'id': ingredient.id}) }}">show</a>
-                    <a href="{{ path('app_back_ingredient_edit', {'id': ingredient.id}) }}">edit</a>
+                <td class="number">{{ ingredient.id }}</td>
+                <td class="string">{{ ingredient.name }}</td>
+                <td class="date">{{ ingredient.isVegetarian ? '<span class="far fa-check"></span>' : '<span class="far fa-times"></span>' }}</td>
+                <td class="date">
+                    <a href="{{ path('app_back_ingredient_show', {'id': ingredient.id}) }}" class="btn"><span class="fal fa-eye"></span> Voir</a>
+                    <a href="{{ path('app_back_ingredient_edit', {'id': ingredient.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
+                    {{ include('back/ingredient/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_back_ingredient_new') }}">Create new</a>
 {% endblock %}

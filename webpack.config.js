@@ -24,6 +24,8 @@ Encore
     .addEntry('container', './assets/scripts/common/container.js')
     .addEntry('common_topbar', './assets/scripts/common/topbar.js')
 
+    .addEntry('admin_common', './assets/scripts/admin/common.js')
+
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
