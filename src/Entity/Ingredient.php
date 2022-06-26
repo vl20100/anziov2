@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\IngredientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
@@ -18,6 +20,14 @@ class Ingredient
 
     #[ORM\Column(type: 'boolean')]
     private $isVegetarian;
+
+    #[ORM\ManyToMany(targetEntity: Pizza::class, mappedBy: 'ingredients')]
+    private $pizzas;
+
+    public function __construct()
+    {
+        $this->pizzas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,33 @@ class Ingredient
     public function setIsVegetarian(bool $isVegetarian): self
     {
         $this->isVegetarian = $isVegetarian;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pizza>
+     */
+    public function getPizzas(): Collection
+    {
+        return $this->pizzas;
+    }
+
+    public function addPizza(Pizza $pizza): self
+    {
+        if (!$this->pizzas->contains($pizza)) {
+            $this->pizzas[] = $pizza;
+            $pizza->addIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePizza(Pizza $pizza): self
+    {
+        if ($this->pizzas->removeElement($pizza)) {
+            $pizza->removeIngredient($this);
+        }
 
         return $this;
     }

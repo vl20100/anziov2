@@ -1,0 +1,30 @@
+{% extends 'back/base_admin.html.twig' %}
+
+{% block title %}{{ pizza_base.name }} - Administranzio{% endblock %}
+
+{% block container %}
+    <h1>{{ pizza_base.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ pizza_base.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ pizza_base.name }}</td>
+            </tr>
+            <tr>
+                <th>Icône</th>
+                <td><span class="{{ pizza_base.icon }} fa-2x"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn" href="{{ path('app_back_pizzabase_index') }}"><span class="fal fa-arrow-left"></span> Retour à la liste</a>
+
+    <a href="{{ path('app_back_pizzabase_edit', {'id': pizza_base.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
+
+    {{ include('back/pizza_base/_delete_form.html.twig') }}
+{% endblock %}

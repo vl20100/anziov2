@@ -1,0 +1,13 @@
+{% extends 'back/base_admin.html.twig' %}
+
+{% block title %}Modifier {{ pizza.name }} (#{{ pizza.id }}) - Administranzio{% endblock %}
+
+{% block container %}
+    <h1>Modifier {{ pizza.name }} (#{{ pizza.id }})</h1>
+
+    {{ include('back/pizza/_form.html.twig') }}
+
+    <a href="{{ path('app_back_pizza_index') }}" class="btn"><span class="fal fa-arrow-left"></span> Retour à la liste</a>
+
+    {{ include('back/pizza/_delete_form.html.twig') }}
+{% endblock %}

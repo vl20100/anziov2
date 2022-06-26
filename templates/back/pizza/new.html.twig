@@ -1,0 +1,11 @@
+{% extends 'back/base_admin.html.twig' %}
+
+{% block title %}Ajouter une pizza - Administranzio{% endblock %}
+
+{% block container %}
+    <h1>Ajouter une Pizza</h1>
+
+    {{ include('back/pizza/_form.html.twig') }}
+
+    <a href="{{ path('app_back_pizza_index') }}" class="btn"><span class="fal fa-arrow-left"></span> Retour à la liste</a>
+{% endblock %}

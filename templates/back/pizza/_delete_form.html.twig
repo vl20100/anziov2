@@ -1,0 +1,4 @@
+<form method="post" class="deleteForm" action="{{ path('app_back_pizza_delete', {'id': pizza.id}) }}" onsubmit="return confirm('Supprimer la pizza {{ pizza.name }} (#{{ pizza.id }}) ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pizza.id) }}">
+    <button class="btn deleteBtn"><span class="fal fa-trash-alt"></span> Supprimer</button>
+</form>

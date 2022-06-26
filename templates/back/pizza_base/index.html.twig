@@ -1,0 +1,38 @@
+{% extends 'back/base_admin.html.twig' %}
+
+{% block title %}Gestion des bases de pizza - Administranzio{% endblock %}
+
+{% block container %}
+    <h1>Gestion des bases de pizza</h1>
+
+    <p><a href="{{ path('app_back_pizzabase_new') }}" class="btn addBtn"><span class="fal fa-plus"></span> Ajouter une base de pizza</a></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Icône</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pizza_base in pizza_bases %}
+            <tr>
+                <td class="number">{{ pizza_base.id }}</td>
+                <td class="string">{{ pizza_base.name }}</td>
+                <td class="date"><span class="{{ pizza_base.icon }}"></span></td>
+                <td class="date">
+                    <a href="{{ path('app_back_pizzabase_show', {'id': pizza_base.id}) }}" class="btn"><span class="fal fa-eye"></span> Voir</a>
+                    <a href="{{ path('app_back_pizzabase_edit', {'id': pizza_base.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
+                    {{ include('back/pizza_base/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
