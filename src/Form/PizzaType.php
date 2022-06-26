@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Ingredient;
 use App\Entity\Pizza;
+use App\Entity\PizzaBase;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,6 +18,11 @@ class PizzaType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom'
+            ])
+            ->add('base', EntityType::class, [
+                'label' => 'Base',
+                'class' => PizzaBase::class,
+                'choice_label' => 'name'
             ])
             ->add('ingredients', EntityType::class, [
                 'label' => 'Ingrédients',

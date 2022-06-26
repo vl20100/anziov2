@@ -21,6 +21,10 @@ class Pizza
     #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'pizzas')]
     private $ingredients;
 
+    #[ORM\ManyToOne(targetEntity: PizzaBase::class, inversedBy: 'pizzas')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $base;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
@@ -63,6 +67,18 @@ class Pizza
     public function removeIngredient(Ingredient $ingredient): self
     {
         $this->ingredients->removeElement($ingredient);
+
+        return $this;
+    }
+
+    public function getBase(): ?PizzaBase
+    {
+        return $this->base;
+    }
+
+    public function setBase(?PizzaBase $base): self
+    {
+        $this->base = $base;
 
         return $this;
     }
