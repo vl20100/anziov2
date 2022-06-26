@@ -5,12 +5,14 @@ namespace App\Controller\Back;
 use App\Entity\Ingredient;
 use App\Form\IngredientType;
 use App\Repository\IngredientRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/administranzio/ingredient')]
+#[isGranted("ROLE_ADMIN")]
 class IngredientController extends AbstractController
 {
     #[Route('/', methods: ['GET'])]
