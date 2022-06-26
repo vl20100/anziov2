@@ -25,6 +25,15 @@ class Pizza
     #[ORM\JoinColumn(nullable: false)]
     private $base;
 
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $price26;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $price33;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $price40;
+
     public function __construct()
     {
         $this->ingredients = new ArrayCollection();
@@ -79,6 +88,42 @@ class Pizza
     public function setBase(?PizzaBase $base): self
     {
         $this->base = $base;
+
+        return $this;
+    }
+
+    public function getPrice26(): ?float
+    {
+        return $this->price26;
+    }
+
+    public function setPrice26(?float $price26): self
+    {
+        $this->price26 = $price26;
+
+        return $this;
+    }
+
+    public function getPrice33(): ?float
+    {
+        return $this->price33;
+    }
+
+    public function setPrice33(?float $price33): self
+    {
+        $this->price33 = $price33;
+
+        return $this;
+    }
+
+    public function getPrice40(): ?float
+    {
+        return $this->price40;
+    }
+
+    public function setPrice40(?float $price40): self
+    {
+        $this->price40 = $price40;
 
         return $this;
     }

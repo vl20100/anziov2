@@ -7,6 +7,7 @@ use App\Entity\Pizza;
 use App\Entity\PizzaBase;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,6 +30,18 @@ class PizzaType extends AbstractType
                 'class' => Ingredient::class,
                 'multiple' => true,
                 'choice_label' => 'name'
+            ])
+            ->add('price26', MoneyType::class, [
+                'label' => 'Prix ⌀26',
+                'required' => false
+            ])
+            ->add('price33', MoneyType::class, [
+                'label' => 'Prix ⌀33',
+                'required' => false
+            ])
+            ->add('price40', MoneyType::class, [
+                'label' => 'Prix ⌀40',
+                'required' => false
             ])
         ;
     }

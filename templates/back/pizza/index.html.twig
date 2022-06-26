@@ -12,16 +12,30 @@
             <tr>
                 <th>#</th>
                 <th>Nom</th>
+                <th>Végétarienne</th>
                 <th>Base</th>
+                <th>Prix ⌀26</th>
+                <th>Prix ⌀33</th>
+                <th>Prix ⌀40</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for pizza in pizzas %}
+            {% set veggie = true %}
+            {% for ingredient in pizza.ingredients %}
+                {% if ingredient.isVegetarian == false %}
+                    {% set veggie = false %}
+                {% endif %}
+            {% endfor %}
             <tr>
                 <td class="number">{{ pizza.id }}</td>
                 <td class="string">{{ pizza.name }}</td>
+                <td class="date">{% if veggie == true %}<span class="fal fa-leaf"></span>{% endif %}</td>
                 <td class="string"><span class="{{ pizza.base.icon }}"></span> {{ pizza.base.name }}</td>
+                <td class="number">{{ pizza.price26 }}</td>
+                <td class="number">{{ pizza.price33 }}</td>
+                <td class="number">{{ pizza.price40 }}</td>
                 <td class="date">
                     <a href="{{ path('app_back_pizza_show', {'id': pizza.id}) }}" class="btn"><span class="fal fa-eye"></span> Voir</a>
                     <a href="{{ path('app_back_pizza_edit', {'id': pizza.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
