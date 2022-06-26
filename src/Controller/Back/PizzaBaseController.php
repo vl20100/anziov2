@@ -5,12 +5,14 @@ namespace App\Controller\Back;
 use App\Entity\PizzaBase;
 use App\Form\PizzaBaseType;
 use App\Repository\PizzaBaseRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/pizza/base')]
+#[isGranted('ROLE_SUPER_ADMIN')]
 class PizzaBaseController extends AbstractController
 {
     #[Route('/', methods: ['GET'])]

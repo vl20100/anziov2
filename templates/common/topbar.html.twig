@@ -5,7 +5,13 @@
                 <img src="{{ asset('build/images/logo/logo.png') }}" alt="">
             </li>
             {% for topbar_link in topbar_links %}
-                <li><a href="{{ topbar_link.link }}"><span class="{{ topbar_link.icon }}"></span>{{ topbar_link.label }}</a></li>
+                {% if topbar_link.role is defined %}
+                    {% if is_granted(topbar_link.role) %}
+                        <li><a href="{{ topbar_link.link }}"><span class="{{ topbar_link.icon }}"></span>{{ topbar_link.label }}</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ topbar_link.link }}"><span class="{{ topbar_link.icon }}"></span>{{ topbar_link.label }}</a></li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
