@@ -16,6 +16,18 @@ class HomeController extends AbstractController
     #[Route("/")]
     public function home(Request $request, ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordHasher): Response
     {
+        /*$user = $doctrine->getRepository(User::class)->find(2);
+        $plainPassword = 'vAnzi2608?';
+
+        // hash the password (based on the security.yaml config for the $user class)
+        $hashedPassword = $passwordHasher->hashPassword(
+            $user,
+            $plainPassword
+        );
+        $user->setPassword($hashedPassword);
+
+        $doctrine->getManager()->flush();*/
+
         return $this->render('front/home.html.twig');
     }
 }

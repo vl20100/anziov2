@@ -15,9 +15,10 @@
 {% block body %}
     {% set topbar_links = [
         {'label':'Accueil', 'link': path('app_back_admin_home'), 'icon':'fal fa-home'},
-        {'label':'Bases de pizza', 'link': path('app_back_pizzabase_index'), 'icon':'fal fa-glass', 'role':'ROLE_SUPER_ADMIN'},
+        {'label':'Bases', 'link': path('app_back_pizzabase_index'), 'icon':'fal fa-glass', 'role':'ROLE_SUPER_ADMIN'},
         {'label':'Ingrédients', 'link': path('app_back_ingredient_index'), 'icon':'fal fa-wheat', 'role':'ROLE_ADMIN'},
         {'label':'Pizzas', 'link': path('app_back_pizza_index'), 'icon':'fal fa-pizza', 'role':'ROLE_ADMIN'},
+        {'label':'Utilisateurs', 'link': path('app_back_user_index'), 'icon':'fal fa-users', 'role':'ROLE_SUPER_ADMIN'},
         {'label':'Déconnexion', 'link': path('app_logout'), 'icon':'fal fa-sign-out'}
         ] %}
     {% include 'common/topbar.html.twig' with {'topbar_links': topbar_links} %}

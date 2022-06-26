@@ -1,0 +1,38 @@
+{% extends 'back/base_admin.html.twig' %}
+
+{% block title %}Gestion des utilisateurs - Administranzio{% endblock %}
+
+{% block container %}
+    <h1>Gestion des utilisateurs</h1>
+
+    <p><a href="{{ path('app_back_user_new') }}" class="btn addBtn"><span class="fal fa-plus"></span> Ajouter un utilisateur</a></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Login</th>
+                <th>Rôles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="number">{{ user.id }}</td>
+                <td class="string">{{ user.username }}</td>
+                <td class="string">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td class="date">
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}" class="btn"><span class="fal fa-eye"></span> Voir</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
+                    {{ include('back/user/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
