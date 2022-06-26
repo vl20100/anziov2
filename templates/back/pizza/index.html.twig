@@ -12,6 +12,7 @@
             <tr>
                 <th>#</th>
                 <th>Nom</th>
+                <th>Base</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
             <tr>
                 <td class="number">{{ pizza.id }}</td>
                 <td class="string">{{ pizza.name }}</td>
+                <td class="string"><span class="{{ pizza.base.icon }}"></span> {{ pizza.base.name }}</td>
                 <td class="date">
                     <a href="{{ path('app_back_pizza_show', {'id': pizza.id}) }}" class="btn"><span class="fal fa-eye"></span> Voir</a>
                     <a href="{{ path('app_back_pizza_edit', {'id': pizza.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
@@ -28,7 +30,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">Aucun résultat</td>
+                <td colspan="4">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>
