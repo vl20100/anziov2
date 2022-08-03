@@ -1,0 +1,20 @@
+{% extends 'front/base_front.html.twig' %}
+
+{% block title %}Carte - Anzio pizza{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('front_menu') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('front_menu') }}
+{% endblock %}
+
+{% block container %}
+    <h1>La carta</h1>
+    <div class="menucontent">
+        menu
+    </div>
+{% endblock %}

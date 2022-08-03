@@ -1,0 +1,26 @@
+.homecontent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 50%;
+
+    &.rightcol {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      flex: 1;
+    }
+
+    img {
+      max-height: 75vh;
+      max-width: 95%;
+    }
+  }
+}

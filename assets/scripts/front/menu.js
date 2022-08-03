@@ -1,0 +1,1 @@
+import '../../styles/front/menu.scss';

@@ -26,6 +26,9 @@ Encore
 
     .addEntry('admin_common', './assets/scripts/admin/common.js')
 
+    .addEntry('front_home', './assets/scripts/front/home.js')
+    .addEntry('front_menu', './assets/scripts/front/menu.js')
+
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
