@@ -1,0 +1,11 @@
+<div class="pizza">
+    <div class="leftColumn">
+        <p class="pizzaName">{{ pizza.name }}</p>
+        <p class="pizzaIngredients">{{ pizza.ingredients | join(', ') }}</p>
+    </div>
+    <div class="rightColumn">
+        <div>{{ pizza.price26 | number_format(2, ',') }}€</div>
+        <div>{{ pizza.price33 | number_format(2, ',') }}€</div>
+        <div>{{ pizza.price40 | number_format(2, ',') }}€</div>
+    </div>
+</div>

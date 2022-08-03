@@ -9,12 +9,49 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('common_tabs') }}
     {{ encore_entry_script_tags('front_menu') }}
 {% endblock %}
 
 {% block container %}
     <h1>La carta</h1>
     <div class="menucontent">
-        menu
+        <div class="tabs">
+            <span class="tab active" data-target="tabContainerPizze">
+                <img src="https://via.placeholder.com/400x400.png?text=Pizza+(400x400)">
+                <span class="tabLabel">Pizze</span>
+            </span>
+            <span class="tab" data-target="tabContainerPiatti">
+                <img src="https://via.placeholder.com/400x400.png?text=Plat+(400x400)">
+                <span class="tabLabel">Piatti</span>
+            </span>
+            <span class="tab" data-target="tabContainerDolci">
+                <img src="https://via.placeholder.com/400x400.png?text=Dessert+(400x400)">
+                <span class="tabLabel">Dolci</span>
+            </span>
+            <span class="tab" data-target="tabContainerBevande">
+                <img src="https://via.placeholder.com/400x400.png?text=Boisson+(400x400)">
+                <span class="tabLabel">Bevande</span>
+            </span>
+        </div>
+        <div class="tabContainers">
+            <div class="tabContainer active" id="tabContainerPizze">
+                <h3>Pizze rosse</h3>
+                {% for pizza in pizzas %}
+                    {% if pizza.base.name == 'Tomate' %}
+                        {% include 'front/_pizza.html.twig' %}
+                    {% endif %}
+                {% endfor %}
+                <h3>Pizze bianche</h3>
+                {% for pizza in pizzas %}
+                    {% if pizza.base.name == 'Crème' %}
+                        {% include 'front/_pizza.html.twig' %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="tabContainer hidden" id="tabContainerPiatti">Les plats</div>
+            <div class="tabContainer hidden" id="tabContainerDolci">Les desserts</div>
+            <div class="tabContainer hidden" id="tabContainerBevande">Les boissons</div>
+        </div>
     </div>
 {% endblock %}

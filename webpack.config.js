@@ -23,6 +23,7 @@ Encore
     .addEntry('reset', './assets/scripts/common/reset.js')
     .addEntry('container', './assets/scripts/common/container.js')
     .addEntry('common_topbar', './assets/scripts/common/topbar.js')
+    .addEntry('common_tabs', './assets/scripts/common/tabs.js')
 
     .addEntry('admin_common', './assets/scripts/admin/common.js')
 
