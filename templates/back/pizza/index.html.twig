@@ -33,9 +33,9 @@
                 <td class="string">{{ pizza.name }}</td>
                 <td class="date">{% if veggie == true %}<span class="fal fa-leaf"></span>{% endif %}</td>
                 <td class="string"><span class="{{ pizza.base.icon }}"></span> {{ pizza.base.name }}</td>
-                <td class="number">{{ pizza.price26 }}</td>
-                <td class="number">{{ pizza.price33 }}</td>
-                <td class="number">{{ pizza.price40 }}</td>
+                <td class="number">{{ pizza.price26 | number_format(2, ',') }}€</td>
+                <td class="number">{{ pizza.price33 | number_format(2, ',') }}€</td>
+                <td class="number">{{ pizza.price40 | number_format(2, ',') }}€</td>
                 <td class="date">
                     <a href="{{ path('app_back_pizza_show', {'id': pizza.id}) }}" class="btn"><span class="fal fa-eye"></span> Voir</a>
                     <a href="{{ path('app_back_pizza_edit', {'id': pizza.id}) }}" class="btn"><span class="fal fa-edit"></span> Modifier</a>
@@ -44,7 +44,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">Aucun résultat</td>
+                <td colspan="8">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>

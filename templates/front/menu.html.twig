@@ -36,17 +36,13 @@
         </div>
         <div class="tabContainers">
             <div class="tabContainer active" id="tabContainerPizze">
-                <h3>Pizze rosse</h3>
-                {% for pizza in pizzas %}
-                    {% if pizza.base.name == 'Tomate' %}
-                        {% include 'front/_pizza.html.twig' %}
-                    {% endif %}
-                {% endfor %}
-                <h3>Pizze bianche</h3>
-                {% for pizza in pizzas %}
-                    {% if pizza.base.name == 'Crème' %}
-                        {% include 'front/_pizza.html.twig' %}
-                    {% endif %}
+                {% for base in bases %}
+                    <h3><span class="{{ base.icon }}"></span> Base {{ base.name }}</h3>
+                    {% for pizza in pizzas %}
+                        {% if pizza.base.id == base.id %}
+                            {% include 'front/_pizza.html.twig' %}
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
             </div>
             <div class="tabContainer hidden" id="tabContainerPiatti">Les plats</div>
