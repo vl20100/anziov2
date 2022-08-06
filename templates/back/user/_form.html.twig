@@ -1,4 +1,6 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.roles) }}
     <button class="btn saveBtn"><span class="fal fa-save"></span> Enregistrer</button>
 {{ form_end(form) }}

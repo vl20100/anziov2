@@ -7,6 +7,7 @@ use App\Entity\Pizza;
 use App\Entity\PizzaBase;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -41,6 +42,10 @@ class PizzaType extends AbstractType
             ])
             ->add('price40', MoneyType::class, [
                 'label' => 'Prix ⌀40',
+                'required' => false
+            ])
+            ->add('active', CheckboxType::class, [
+                'label' => 'Active',
                 'required' => false
             ])
         ;

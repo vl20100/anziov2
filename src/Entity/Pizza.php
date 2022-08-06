@@ -13,26 +13,29 @@ class Pizza
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private string $name;
 
     #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'pizzas')]
     private $ingredients;
 
     #[ORM\ManyToOne(targetEntity: PizzaBase::class, inversedBy: 'pizzas')]
     #[ORM\JoinColumn(nullable: false)]
-    private $base;
+    private PizzaBase $base;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private $price26;
+    private ?float $price26;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private $price33;
+    private ?float $price33;
 
     #[ORM\Column(type: 'float', nullable: true)]
-    private $price40;
+    private ?float $price40;
+
+    #[ORM\Column]
+    private ?bool $active = null;
 
     public function __construct()
     {
@@ -124,6 +127,18 @@ class Pizza
     public function setPrice40(?float $price40): self
     {
         $this->price40 = $price40;
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

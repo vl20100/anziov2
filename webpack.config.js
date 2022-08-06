@@ -26,6 +26,7 @@ Encore
     .addEntry('common_tabs', './assets/scripts/common/tabs.js')
 
     .addEntry('admin_common', './assets/scripts/admin/common.js')
+    .addEntry('admin_pizza', './assets/scripts/admin/pizza.js')
 
     .addEntry('front_home', './assets/scripts/front/home.js')
     .addEntry('front_menu', './assets/scripts/front/menu.js')
