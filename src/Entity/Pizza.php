@@ -2,44 +2,66 @@
 
 namespace App\Entity;
 
-use App\Repository\PizzaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PizzaRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\PizzaRepository")
+ */
 class Pizza
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    protected $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $name;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
 
-    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'pizzas')]
-    private $ingredients;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Price", mappedBy="pizza", orphanRemoval=true)
+     */
+    protected $prices;
 
-    #[ORM\ManyToOne(targetEntity: PizzaBase::class, inversedBy: 'pizzas')]
-    #[ORM\JoinColumn(nullable: false)]
-    private PizzaBase $base;
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ingredient", inversedBy="pizzas")
+     */
+    protected $ingredients;
 
-    #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $price26;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $creamBase;
 
-    #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $price33;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $tomatoBase;
 
-    #[ORM\Column(type: 'float', nullable: true)]
-    private ?float $price40;
+    /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    protected $truffleBase = false;
 
-    #[ORM\Column]
-    private ?bool $active = null;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $active = false;
 
     public function __construct()
     {
+        $this->prices = new ArrayCollection();
         $this->ingredients = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -60,7 +82,38 @@ class Pizza
     }
 
     /**
-     * @return Collection<int, Ingredient>
+     * @return Collection|Price[]
+     */
+    public function getPrices(): Collection
+    {
+        return $this->prices;
+    }
+
+    public function addPrice(Price $price): self
+    {
+        if (!$this->prices->contains($price)) {
+            $this->prices[] = $price;
+            $price->setPizza($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrice(Price $price): self
+    {
+        if ($this->prices->contains($price)) {
+            $this->prices->removeElement($price);
+            // set the owning side to null (unless already changed)
+            if ($price->getPizza() === $this) {
+                $price->setPizza(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ingredient[]
      */
     public function getIngredients(): Collection
     {
@@ -78,60 +131,62 @@ class Pizza
 
     public function removeIngredient(Ingredient $ingredient): self
     {
-        $this->ingredients->removeElement($ingredient);
+        if ($this->ingredients->contains($ingredient)) {
+            $this->ingredients->removeElement($ingredient);
+        }
 
         return $this;
     }
 
-    public function getBase(): ?PizzaBase
+    public function getCreamBase(): ?bool
     {
-        return $this->base;
+        return $this->creamBase;
     }
 
-    public function setBase(?PizzaBase $base): self
+    public function setCreamBase(bool $creamBase): self
     {
-        $this->base = $base;
+        $this->creamBase = $creamBase;
 
         return $this;
     }
 
-    public function getPrice26(): ?float
+    public function getTomatoBase(): ?bool
     {
-        return $this->price26;
+        return $this->tomatoBase;
     }
 
-    public function setPrice26(?float $price26): self
+    public function setTomatoBase(bool $tomatoBase): self
     {
-        $this->price26 = $price26;
+        $this->tomatoBase = $tomatoBase;
 
         return $this;
     }
 
-    public function getPrice33(): ?float
+    public function getMomentPizzaStart(): ?\DateTimeInterface
     {
-        return $this->price33;
+        return $this->momentPizzaStart;
     }
 
-    public function setPrice33(?float $price33): self
+    public function setMomentPizzaStart(?\DateTimeInterface $momentPizzaStart): self
     {
-        $this->price33 = $price33;
+        $this->momentPizzaStart = $momentPizzaStart;
 
         return $this;
     }
 
-    public function getPrice40(): ?float
+    public function getMomentPizzaEnd(): ?\DateTimeInterface
     {
-        return $this->price40;
+        return $this->momentPizzaEnd;
     }
 
-    public function setPrice40(?float $price40): self
+    public function setMomentPizzaEnd(?\DateTimeInterface $momentPizzaEnd): self
     {
-        $this->price40 = $price40;
+        $this->momentPizzaEnd = $momentPizzaEnd;
 
         return $this;
     }
 
-    public function isActive(): ?bool
+    public function getActive(): ?bool
     {
         return $this->active;
     }
@@ -140,6 +195,24 @@ class Pizza
     {
         $this->active = $active;
 
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTruffleBase(): bool
+    {
+        return $this->truffleBase;
+    }
+
+    /**
+     * @param bool $truffleBase
+     * @return Pizza
+     */
+    public function setTruffleBase(bool $truffleBase): Pizza
+    {
+        $this->truffleBase = $truffleBase;
         return $this;
     }
 }
