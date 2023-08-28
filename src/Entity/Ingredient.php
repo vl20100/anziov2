@@ -2,51 +2,36 @@
 
 namespace App\Entity;
 
-use App\Utils\StringHelper;
+use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\IngredientRepository")
- */
+#[ORM\Entity(repositoryClass: IngredientRepository::class)]
 class Ingredient
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $vegetarian;
+    #[ORM\Column(type: 'boolean')]
+    private $isVegetarian;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Pizza", mappedBy="ingredients")
-     */
+    #[ORM\ManyToMany(targetEntity: Pizza::class, mappedBy: 'ingredients')]
     private $pizzas;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\PizzaOfMonth", mappedBy="ingredients")
-     */
-    private $pizzasOfMonth;
 
     public function __construct()
     {
         $this->pizzas = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->name;
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -66,25 +51,20 @@ class Ingredient
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function isIsVegetarian(): ?bool
     {
-        return StringHelper::getInstance()->getSlug($this->getName());
+        return $this->isVegetarian;
     }
 
-    public function getVegetarian(): ?bool
+    public function setIsVegetarian(bool $isVegetarian): self
     {
-        return $this->vegetarian;
-    }
-
-    public function setVegetarian(bool $vegetarian): self
-    {
-        $this->vegetarian = $vegetarian;
+        $this->isVegetarian = $isVegetarian;
 
         return $this;
     }
 
     /**
-     * @return Collection|Pizza[]
+     * @return Collection<int, Pizza>
      */
     public function getPizzas(): Collection
     {
@@ -103,37 +83,8 @@ class Ingredient
 
     public function removePizza(Pizza $pizza): self
     {
-        if ($this->pizzas->contains($pizza)) {
-            $this->pizzas->removeElement($pizza);
+        if ($this->pizzas->removeElement($pizza)) {
             $pizza->removeIngredient($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|PizzaOfMonth[]
-     */
-    public function getPizzasOfMonth(): Collection
-    {
-        return $this->pizzasOfMonth;
-    }
-
-    public function addPizzaOfMonth(PizzaOfMonth $pizzaOfMonth): self
-    {
-        if (!$this->pizzasOfMonth->contains($pizzaOfMonth)) {
-            $this->pizzasOfMonth[] = $pizzaOfMonth;
-            $pizzaOfMonth->addIngredient($this);
-        }
-
-        return $this;
-    }
-
-    public function removePizzaOfMonth(PizzaOfMonth $pizzaOfMonth): self
-    {
-        if ($this->pizzasOfMonth->contains($pizzaOfMonth)) {
-            $this->pizzasOfMonth->removeElement($pizzaOfMonth);
-            $pizzaOfMonth->removeIngredient($this);
         }
 
         return $this;
